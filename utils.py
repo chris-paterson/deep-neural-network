@@ -6,12 +6,14 @@ def sigmoid(Z):
 
     return A, cache
 
-def sigmoid_backwards(dA, cache):
+def sigmoid_backward(dA, cache):
     Z = cache
-    A = sigmoid(Z)
-    dZ = dA * A * (1 - A)
-
+    
+    s = 1/(1+np.exp(-Z))
+    dZ = dA * s * (1-s)
+    
     assert (dZ.shape == Z.shape)
+    
     return dZ
 
 def relu(Z):
@@ -21,7 +23,7 @@ def relu(Z):
     assert(A.shape == Z.shape)
     return A, cache
 
-def relu_backwards(dA, cache):
+def relu_backward(dA, cache):
     Z = cache
     dZ = np.array(dA, copy=True)
     dZ[Z <= 0] = 0
