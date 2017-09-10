@@ -1,7 +1,5 @@
 # Deep Neural Networks Overview
 
-<<TODO>> = need to add explanation from notes.
-
 This readme is an overview of the deep neural network implemented by following [Andrew Ng's deep learning course](https://www.coursera.org/learn/neural-networks-deep-learning).
 
 ## Initialisation
@@ -20,10 +18,20 @@ def initialize_parameters(layer_dimensions):
     return parameters
 ```
 
-We initialise weights to be a random number because <<TODO>>
+We initialise weights to be a random number instead of 0 to prevent the slowdown of gradient descent.
 
 ## Forward Propagation
 
+`linear_forward` provides us with Z.
+
+```
+def linear_forward(A, W, b):
+    Z = np.dot(W, A) + b
+    assert(Z.shape == (W.shape[0], A.shape[1]))
+    cache = (A, W, b)
+
+    return Z, cache
+```
 
 ## Calculate Cost
 
